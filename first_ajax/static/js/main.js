@@ -15,6 +15,10 @@ document.addEventListener("DOMContentLoaded", function() {
     const timeajaxrequest = document.getElementById('run_ajax_time');
     const sectioneight = document.querySelector('.step_eight');
 
+    const acarajaxrequest = document.getElementById('run_ajax_acar');
+    const sectionnine = document.querySelector('.step_nine');
+    const emptyul = document.getElementById('car_ul');
+
     initialajaxrequest.addEventListener('click', () => {
         const request = axios.get('http://intro-ajax-api.herokuapp.com/');
         request.then(function(response) {
@@ -60,14 +64,24 @@ document.addEventListener("DOMContentLoaded", function() {
             params: {timezone: 'Asia/Kolkata'}
         });
         request.then(function(response) {
-            console.log("__REQUEST_TIME_MADE__")
+            console.log("__REQUEST_TIME_MADE__");
             console.log(request.data);
             const timeDataElem = document.createElement('p');
             timeDataElem.innerHTML = response.data;
             sectioneight.appendChild(timeDataElem);
-        })
-    })
+        });
+    });
 
+    acarajaxrequest.addEventListener('click', () => {
+        const request = axios.get("http://intro-ajax-api.herokuapp.com/a_car");
+        request.then(function(response) {
+            console.log("__REQUEST_ACAR_MADE__");
+            console.log(request.data);
+            const carDataElem = document.createElement('li');
+            carDataElem.innerHTML = response.data;
+            emptyul.appendChild(carDataElem);
+        });
+    });
     
     // const request = axios.get('http://intro-ajax-api.herokuapp.com/');
     // request.then(function(response) {
