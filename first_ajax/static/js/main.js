@@ -17,21 +17,24 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     pingpongajaxrequest.addEventListener('click', () => {
-        const request = axios.get('http://intro-ajax-api.herokuapp.com/pong');
+        const request = axios.get('http://intro-ajax-api.herokuapp.com/ping');
         request.then(function(response){
             console.log("_REQUEST_PING_MADE__");
             console.log(request.data);
             const appendDataElem = document.createElement('p');
             appendDataElem.innerHTML = response.data;
             sectionping.appendChild(appendDataElem);
-        });
-        request.catch(function(error) {
+        })
+        .catch(function(error) {
             console.error('__REQUEST_FAILED___')
             console.error(error.response.data);
             const errorDataElem = document.createElement('p');
             errorDataElem.innerHTML = error.response.data;
             sectionping.appendChild(errorDataElem);
-        });
+        })
+        .then(function(response) {
+            console.log("__REQUEST_NOTSURE__")
+        })
     });
     // const request = axios.get('http://intro-ajax-api.herokuapp.com/');
     // request.then(function(response) {
