@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const initialajaxrequest = document.getElementById('run_ajax_root');
     const pingpongajaxrequest = document.getElementById('run_ajax_pingpong');
     const sectionping = document.querySelector('.step_ping');
+    const countajaxrequest = document.getElementById('run_ajax_count');
+    const sectionseven = document.querySelector('.step_seven');
 
     initialajaxrequest.addEventListener('click', () => {
         const request = axios.get('http://intro-ajax-api.herokuapp.com/');
@@ -34,8 +36,19 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .then(function(response) {
             console.log("__REQUEST_NOTSURE__")
-        })
+        });
     });
+
+    countajaxrequest.addEventListener('click', () => {
+        const request = axios.get('http://intro-ajax-api.herokuapp.com/count');
+        request.then(function(response) {
+            console.log("__REQUEST_COUNT_MADE__");
+            console.log(request.data);
+            const countDataElem = document.createElement('p');
+            countDataElem.innerHTML = response.data;
+            sectionseven.appendChild(countDataElem);
+        });
+    })
     // const request = axios.get('http://intro-ajax-api.herokuapp.com/');
     // request.then(function(response) {
     //     console.log("__REQUEST MADE__");
